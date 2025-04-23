@@ -147,6 +147,6 @@ jobs:
           kubectl apply -f service-account.yml
           kubectl apply -f appointment-deployment.yml
           kubectl apply -f appointment-service.yml
-          kubectl apply -f patient-depolyment.yml
+          kubectl apply -f patient-deployment.yml
           kubectl apply -f patient-service.yml
         working-directory: ./K8s
