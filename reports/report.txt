@@ -2,33 +2,88 @@
 This file was generated during the github actions workflow run.
 
 ## Terraform Plan Output
-[command]/home/runner/work/_temp/b2f99366-e015-4ffe-ade9-37805200166a/terraform-bin plan -lock=false
+[command]/home/runner/work/_temp/6ed8ff48-1a0c-4dd0-bac9-d1c9fa0bda12/terraform-bin plan -lock=false
 [0m[1mmodule.vpc.aws_vpc.test_vpc: Refreshing state... [id=vpc-0483721b4e57dd4cd][0m
+[0m[1mmodule.iam.aws_iam_role.eks_cluster_role: Refreshing state... [id=health-eks-cluster-cluster-role][0m
 [0m[1mmodule.iam.aws_iam_role.eks_fargate_role: Refreshing state... [id=health-eks-cluster-fargate-role][0m
 [0m[1mmodule.vpc.aws_eip.nat_eip: Refreshing state... [id=eipalloc-00eef99d5d51824fa][0m
-[0m[1mmodule.iam.aws_iam_role.eks_cluster_role: Refreshing state... [id=health-eks-cluster-cluster-role][0m
 [0m[1mmodule.iam.aws_iam_policy_attachment.eks_cluster_policy_attachment: Refreshing state... [id=health-eks-cluster-cluster-policy-attachment][0m
 [0m[1mmodule.iam.aws_iam_policy_attachment.eks_vpc_cni_policy_attachment: Refreshing state... [id=health-eks-cluster-vpc-cni-policy-attachment][0m
 [0m[1mmodule.iam.aws_iam_policy_attachment.eks_fargate_policy_attachment: Refreshing state... [id=health-eks-cluster-fargate-policy-attachment][0m
-[0m[1mmodule.vpc.aws_internet_gateway.test_igw: Refreshing state... [id=igw-0d15e75e86bf31e78][0m
-[0m[1mmodule.vpc.aws_subnet.public_subnet_2: Refreshing state... [id=subnet-005902e0a33a99775][0m
-[0m[1mmodule.vpc.aws_subnet.public_subnet_1: Refreshing state... [id=subnet-009ee333ef6164ca8][0m
 [0m[1mmodule.vpc.aws_subnet.private_subnet_2: Refreshing state... [id=subnet-0fd015cdda5886b4c][0m
+[0m[1mmodule.vpc.aws_subnet.public_subnet_2: Refreshing state... [id=subnet-005902e0a33a99775][0m
 [0m[1mmodule.vpc.aws_subnet.private_subnet_1: Refreshing state... [id=subnet-02977facfbed27057][0m
+[0m[1mmodule.vpc.aws_subnet.public_subnet_1: Refreshing state... [id=subnet-009ee333ef6164ca8][0m
+[0m[1mmodule.vpc.aws_internet_gateway.test_igw: Refreshing state... [id=igw-0d15e75e86bf31e78][0m
 [0m[1mmodule.eks.aws_security_group.fargate_sg: Refreshing state... [id=sg-021a25ded81567c70][0m
 [0m[1mmodule.vpc.aws_route_table.public_route_table: Refreshing state... [id=rtb-04ab9cb0871adcc22][0m
-[0m[1mmodule.vpc.aws_route_table_association.public_route_association_2: Refreshing state... [id=rtbassoc-00eefa8dc82f1856e][0m
 [0m[1mmodule.vpc.aws_route_table_association.public_route_association_1: Refreshing state... [id=rtbassoc-0d56e484f67e46da5][0m
 [0m[1mmodule.vpc.aws_nat_gateway.nat_gw: Refreshing state... [id=nat-0f2f0c7b3b63261d7][0m
-[0m[1mmodule.eks.aws_eks_cluster.eks_cluster: Refreshing state... [id=health-eks-cluster][0m
+[0m[1mmodule.vpc.aws_route_table_association.public_route_association_2: Refreshing state... [id=rtbassoc-00eefa8dc82f1856e][0m
 [0m[1mmodule.vpc.aws_route_table.private_route_table: Refreshing state... [id=rtb-0b4ff8a9f5093142f][0m
+[0m[1mmodule.eks.aws_eks_cluster.eks_cluster: Refreshing state... [id=health-eks-cluster][0m
 [0m[1mmodule.eks.aws_eks_fargate_profile.eks_fargate_profile: Refreshing state... [id=health-eks-cluster:fargate-profile][0m
 
-[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  [32m+[0m create[0m
 
-[0mTerraform has compared your real infrastructure against your configuration
-and found no differences, so no changes are needed.
+Terraform will perform the following actions:
+
+[1m  # module.iam.aws_iam_policy_attachment.ecr_puller_sa_policy_attachment[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_policy_attachment" "ecr_puller_sa_policy_attachment" {
+      [32m+[0m[0m id         = (known after apply)
+      [32m+[0m[0m name       = "health-eks-cluster-ecr-sa-policy-attachment"
+      [32m+[0m[0m policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
+      [32m+[0m[0m roles      = [
+          [32m+[0m[0m "health-eks-cluster-ecr-sa-role",
+        ]
+    }
+
+[1m  # module.iam.aws_iam_role.ecr_puller_sa_role[0m will be created
+[0m  [32m+[0m[0m resource "aws_iam_role" "ecr_puller_sa_role" {
+      [32m+[0m[0m arn                   = (known after apply)
+      [32m+[0m[0m assume_role_policy    = jsonencode(
+            {
+              [32m+[0m[0m Statement = [
+                  [32m+[0m[0m {
+                      [32m+[0m[0m Action    = "sts:AssumeRole"
+                      [32m+[0m[0m Condition = {}
+                      [32m+[0m[0m Effect    = "Allow"
+                      [32m+[0m[0m Principal = {
+                          [32m+[0m[0m AWS = "arn:aws:iam::945839052546:role/health-eks-cluster-fargate-role"
+                        }
+                    },
+                ]
+              [32m+[0m[0m Version   = "2012-10-17"
+            }
+        )
+      [32m+[0m[0m create_date           = (known after apply)
+      [32m+[0m[0m force_detach_policies = false
+      [32m+[0m[0m id                    = (known after apply)
+      [32m+[0m[0m managed_policy_arns   = (known after apply)
+      [32m+[0m[0m max_session_duration  = 3600
+      [32m+[0m[0m name                  = "health-eks-cluster-ecr-sa-role"
+      [32m+[0m[0m name_prefix           = (known after apply)
+      [32m+[0m[0m path                  = "/"
+      [32m+[0m[0m tags                  = {
+          [32m+[0m[0m "Name" = "health-eks-cluster-ecr-sa-role"
+        }
+      [32m+[0m[0m tags_all              = {
+          [32m+[0m[0m "Name" = "health-eks-cluster-ecr-sa-role"
+        }
+      [32m+[0m[0m unique_id             = (known after apply)
+
+      [32m+[0m[0m inline_policy (known after apply)
+    }
+
+[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.
+[0m[90m
+─────────────────────────────────────────────────────────────────────────────[0m
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
 ::debug::Terraform exited with code 0.
-::debug::stdout: [0m[1mmodule.vpc.aws_vpc.test_vpc: Refreshing state... [id=vpc-0483721b4e57dd4cd][0m%0A[0m[1mmodule.iam.aws_iam_role.eks_fargate_role: Refreshing state... [id=health-eks-cluster-fargate-role][0m%0A[0m[1mmodule.vpc.aws_eip.nat_eip: Refreshing state... [id=eipalloc-00eef99d5d51824fa][0m%0A[0m[1mmodule.iam.aws_iam_role.eks_cluster_role: Refreshing state... [id=health-eks-cluster-cluster-role][0m%0A[0m[1mmodule.iam.aws_iam_policy_attachment.eks_cluster_policy_attachment: Refreshing state... [id=health-eks-cluster-cluster-policy-attachment][0m%0A[0m[1mmodule.iam.aws_iam_policy_attachment.eks_vpc_cni_policy_attachment: Refreshing state... [id=health-eks-cluster-vpc-cni-policy-attachment][0m%0A[0m[1mmodule.iam.aws_iam_policy_attachment.eks_fargate_policy_attachment: Refreshing state... [id=health-eks-cluster-fargate-policy-attachment][0m%0A[0m[1mmodule.vpc.aws_internet_gateway.test_igw: Refreshing state... [id=igw-0d15e75e86bf31e78][0m%0A[0m[1mmodule.vpc.aws_subnet.public_subnet_2: Refreshing state... [id=subnet-005902e0a33a99775][0m%0A[0m[1mmodule.vpc.aws_subnet.public_subnet_1: Refreshing state... [id=subnet-009ee333ef6164ca8][0m%0A[0m[1mmodule.vpc.aws_subnet.private_subnet_2: Refreshing state... [id=subnet-0fd015cdda5886b4c][0m%0A[0m[1mmodule.vpc.aws_subnet.private_subnet_1: Refreshing state... [id=subnet-02977facfbed27057][0m%0A[0m[1mmodule.eks.aws_security_group.fargate_sg: Refreshing state... [id=sg-021a25ded81567c70][0m%0A[0m[1mmodule.vpc.aws_route_table.public_route_table: Refreshing state... [id=rtb-04ab9cb0871adcc22][0m%0A[0m[1mmodule.vpc.aws_route_table_association.public_route_association_2: Refreshing state... [id=rtbassoc-00eefa8dc82f1856e][0m%0A[0m[1mmodule.vpc.aws_route_table_association.public_route_association_1: Refreshing state... [id=rtbassoc-0d56e484f67e46da5][0m%0A[0m[1mmodule.vpc.aws_nat_gateway.nat_gw: Refreshing state... [id=nat-0f2f0c7b3b63261d7][0m%0A[0m[1mmodule.eks.aws_eks_cluster.eks_cluster: Refreshing state... [id=health-eks-cluster][0m%0A[0m[1mmodule.vpc.aws_route_table.private_route_table: Refreshing state... [id=rtb-0b4ff8a9f5093142f][0m%0A[0m[1mmodule.eks.aws_eks_fargate_profile.eks_fargate_profile: Refreshing state... [id=health-eks-cluster:fargate-profile][0m%0A%0A[0m[1m[32mNo changes.[0m[1m Your infrastructure matches the configuration.[0m%0A%0A[0mTerraform has compared your real infrastructure against your configuration%0Aand found no differences, so no changes are needed.%0A
+::debug::stdout: [0m[1mmodule.vpc.aws_vpc.test_vpc: Refreshing state... [id=vpc-0483721b4e57dd4cd][0m%0A[0m[1mmodule.iam.aws_iam_role.eks_cluster_role: Refreshing state... [id=health-eks-cluster-cluster-role][0m%0A[0m[1mmodule.iam.aws_iam_role.eks_fargate_role: Refreshing state... [id=health-eks-cluster-fargate-role][0m%0A[0m[1mmodule.vpc.aws_eip.nat_eip: Refreshing state... [id=eipalloc-00eef99d5d51824fa][0m%0A[0m[1mmodule.iam.aws_iam_policy_attachment.eks_cluster_policy_attachment: Refreshing state... [id=health-eks-cluster-cluster-policy-attachment][0m%0A[0m[1mmodule.iam.aws_iam_policy_attachment.eks_vpc_cni_policy_attachment: Refreshing state... [id=health-eks-cluster-vpc-cni-policy-attachment][0m%0A[0m[1mmodule.iam.aws_iam_policy_attachment.eks_fargate_policy_attachment: Refreshing state... [id=health-eks-cluster-fargate-policy-attachment][0m%0A[0m[1mmodule.vpc.aws_subnet.private_subnet_2: Refreshing state... [id=subnet-0fd015cdda5886b4c][0m%0A[0m[1mmodule.vpc.aws_subnet.public_subnet_2: Refreshing state... [id=subnet-005902e0a33a99775][0m%0A[0m[1mmodule.vpc.aws_subnet.private_subnet_1: Refreshing state... [id=subnet-02977facfbed27057][0m%0A[0m[1mmodule.vpc.aws_subnet.public_subnet_1: Refreshing state... [id=subnet-009ee333ef6164ca8][0m%0A[0m[1mmodule.vpc.aws_internet_gateway.test_igw: Refreshing state... [id=igw-0d15e75e86bf31e78][0m%0A[0m[1mmodule.eks.aws_security_group.fargate_sg: Refreshing state... [id=sg-021a25ded81567c70][0m%0A[0m[1mmodule.vpc.aws_route_table.public_route_table: Refreshing state... [id=rtb-04ab9cb0871adcc22][0m%0A[0m[1mmodule.vpc.aws_route_table_association.public_route_association_1: Refreshing state... [id=rtbassoc-0d56e484f67e46da5][0m%0A[0m[1mmodule.vpc.aws_nat_gateway.nat_gw: Refreshing state... [id=nat-0f2f0c7b3b63261d7][0m%0A[0m[1mmodule.vpc.aws_route_table_association.public_route_association_2: Refreshing state... [id=rtbassoc-00eefa8dc82f1856e][0m%0A[0m[1mmodule.vpc.aws_route_table.private_route_table: Refreshing state... [id=rtb-0b4ff8a9f5093142f][0m%0A[0m[1mmodule.eks.aws_eks_cluster.eks_cluster: Refreshing state... [id=health-eks-cluster][0m%0A[0m[1mmodule.eks.aws_eks_fargate_profile.eks_fargate_profile: Refreshing state... [id=health-eks-cluster:fargate-profile][0m%0A%0ATerraform used the selected providers to generate the following execution%0Aplan. Resource actions are indicated with the following symbols:%0A  [32m+[0m create[0m%0A%0ATerraform will perform the following actions:%0A%0A[1m  # module.iam.aws_iam_policy_attachment.ecr_puller_sa_policy_attachment[0m will be created%0A[0m  [32m+[0m[0m resource "aws_iam_policy_attachment" "ecr_puller_sa_policy_attachment" {%0A      [32m+[0m[0m id         = (known after apply)%0A      [32m+[0m[0m name       = "health-eks-cluster-ecr-sa-policy-attachment"%0A      [32m+[0m[0m policy_arn = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"%0A      [32m+[0m[0m roles      = [%0A          [32m+[0m[0m "health-eks-cluster-ecr-sa-role",%0A        ]%0A    }%0A%0A[1m  # module.iam.aws_iam_role.ecr_puller_sa_role[0m will be created%0A[0m  [32m+[0m[0m resource "aws_iam_role" "ecr_puller_sa_role" {%0A      [32m+[0m[0m arn                   = (known after apply)%0A      [32m+[0m[0m assume_role_policy    = jsonencode(%0A            {%0A              [32m+[0m[0m Statement = [%0A                  [32m+[0m[0m {%0A                      [32m+[0m[0m Action    = "sts:AssumeRole"%0A                      [32m+[0m[0m Condition = {}%0A                      [32m+[0m[0m Effect    = "Allow"%0A                      [32m+[0m[0m Principal = {%0A                          [32m+[0m[0m AWS = "arn:aws:iam::945839052546:role/health-eks-cluster-fargate-role"%0A                        }%0A                    },%0A                ]%0A              [32m+[0m[0m Version   = "2012-10-17"%0A            }%0A        )%0A      [32m+[0m[0m create_date           = (known after apply)%0A      [32m+[0m[0m force_detach_policies = false%0A      [32m+[0m[0m id                    = (known after apply)%0A      [32m+[0m[0m managed_policy_arns   = (known after apply)%0A      [32m+[0m[0m max_session_duration  = 3600%0A      [32m+[0m[0m name                  = "health-eks-cluster-ecr-sa-role"%0A      [32m+[0m[0m name_prefix           = (known after apply)%0A      [32m+[0m[0m path                  = "/"%0A      [32m+[0m[0m tags                  = {%0A          [32m+[0m[0m "Name" = "health-eks-cluster-ecr-sa-role"%0A        }%0A      [32m+[0m[0m tags_all              = {%0A          [32m+[0m[0m "Name" = "health-eks-cluster-ecr-sa-role"%0A        }%0A      [32m+[0m[0m unique_id             = (known after apply)%0A%0A      [32m+[0m[0m inline_policy (known after apply)%0A    }%0A%0A[1mPlan:[0m 2 to add, 0 to change, 0 to destroy.%0A[0m[90m%0A─────────────────────────────────────────────────────────────────────────────[0m%0A%0ANote: You didn't use the -out option to save this plan, so Terraform can't%0Aguarantee to take exactly these actions if you run "terraform apply" now.%0A
 ::debug::stderr: 
 ::debug::exitcode: 0
