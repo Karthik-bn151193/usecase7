@@ -139,7 +139,7 @@ jobs:
             --docker-server=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com \
             --docker-username=AWS \
             --docker-password=-
-        working-directory: ./k8s
+        working-directory: ./K8s
 
       - name: Deploy to EKS
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
@@ -149,4 +149,4 @@ jobs:
           kubectl apply -f appointment-service.yml
           kubectl apply -f patient-depolyment.yml
           kubectl apply -f patient-service.yml
-        working-directory: ./k8s
+        working-directory: ./K8s
