@@ -74,7 +74,7 @@ jobs:
           echo "" >> reports/report.txt
           echo "## Terraform Plan Output" >> reports/report.txt
           cat plan.txt >> reports/report.txt
-        working-directory: ./terraform
+        working-directory: ./
 
       - name: Commit and push the report
         run: |
