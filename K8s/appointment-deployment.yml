@@ -15,7 +15,7 @@ spec:
       serviceAccountName: ecr-puller
       containers:
         - name: appointment-service
-          image: 945839052546.dkr.ecr.us-east-1.amazonaws.com/appointment
+          image: 945839052546.dkr.ecr.us-east-1.amazonaws.com/appointment:appointmentimage
           ports:
             - containerPort: 3001
       imagePullSecrets:
