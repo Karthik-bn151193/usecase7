@@ -135,7 +135,7 @@ jobs:
       - name: Create ECR Pull Secret
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | kubectl create secret docker-registry ecr-pull-secret \
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | kubectl create secret docker-registry ecr-pull-secret-new \
             --docker-server=${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com \
             --docker-username=AWS \
             --docker-password=-
